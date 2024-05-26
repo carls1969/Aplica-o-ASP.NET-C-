@@ -3,8 +3,10 @@
 namespace GerenciadorDeEnderecos.Models;
 
 public class Endereco
-{   
+{
 
+    [Key]
+    [Required]
     public int Id { get; set; }
 
     [Required(ErrorMessage = "O campo cep não pode ficar em branco")]

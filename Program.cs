@@ -1,4 +1,13 @@
+using GerenciadorDeEnderecos.Data;
+using Microsoft.EntityFrameworkCore;
+
 var builder = WebApplication.CreateBuilder(args);
+
+var connectionString = builder.Configuration.GetConnectionString("EnderecoConnection");
+
+builder.Services.AddDbContext<EnderecoContext>(
+    opts => opts.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)
+    ));
 
 // Add services to the container.
 

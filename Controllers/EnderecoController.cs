@@ -1,4 +1,5 @@
-﻿using GerenciadorDeEnderecos.Models;
+﻿using GerenciadorDeEnderecos.Data;
+using GerenciadorDeEnderecos.Models;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GerenciadorDeEnderecos.Controllers;
@@ -7,27 +8,32 @@ namespace GerenciadorDeEnderecos.Controllers;
 [Route("[Controller]")]
 public class EnderecoController : ControllerBase
 {
-    private static List<Endereco> enderecos = new List<Endereco>();
-    private static int id = 0;
+
+    private EnderecoContext _context;
+
+    public EnderecoController(EnderecoContext context)
+    {
+        _context = context;
+    }
 
     [HttpPost]
     public IActionResult AdicionaEndereco ([FromBody] Endereco endereco)
     {
-        endereco.Id = id++;
-        enderecos.Add(endereco);
+        _context.Enderecos.Add(endereco);
+        _context.SaveChanges();
         return CreatedAtAction(nameof(ProcuraEnderecoPorId), new { id = endereco.Id }, endereco);
     }
 
     [HttpGet]
     public IEnumerable<Endereco> LeEndereco([FromQuery] int skip = 0, [FromQuery] int take = 10)
     {
-        return enderecos.Skip(skip).Take(take);
+        return _context.Enderecos.Skip(skip).Take(take);
     }
 
     [HttpGet("{id}")]
     public IActionResult ProcuraEnderecoPorId(int id)
     {
-        var endereco = enderecos.FirstOrDefault(endereco => endereco.Id == id);
+        var endereco = _context.Enderecos.FirstOrDefault(endereco => endereco.Id == id);
         if (endereco == null) return NotFound();
         return Ok(endereco);
 
