@@ -26,8 +26,12 @@ public class EnderecoController : ControllerBase
     }
 
     [HttpGet("{id}")]
-    public Endereco? ProcuraEnderecoPorId(int id)
+    public IActionResult ProcuraEnderecoPorId(int id)
     {
-        return enderecos.FirstOrDefault(endereco => endereco.Id == id);
+        var endereco = enderecos.FirstOrDefault(endereco => endereco.Id == id);
+        if (endereco == null) return NotFound();
+
+        return Ok(endereco);
+
     }
 }
