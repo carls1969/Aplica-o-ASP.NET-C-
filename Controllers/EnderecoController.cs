@@ -2,7 +2,9 @@
 using GerenciadorDeEnderecos.Data;
 using GerenciadorDeEnderecos.Data.DTOs;
 using GerenciadorDeEnderecos.Models;
+using Microsoft.AspNetCore.JsonPatch;
 using Microsoft.AspNetCore.Mvc;
+
 
 namespace GerenciadorDeEnderecos.Controllers;
 
@@ -54,4 +56,29 @@ public class EnderecoController : ControllerBase
         _context.SaveChanges();
         return NoContent();
     }
-}
+
+    [HttpPatch("{id}")]
+    public IActionResult AtualizaEnderecoParcialmente(int id, JsonPatchDocument<UpdateEnderecoDto> patch)
+    {
+        var endereco = _context.Enderecos.FirstOrDefault(endereco => endereco.Id == id);
+        if (endereco == null)
+        {
+            return NotFound();
+        }
+        else
+        {
+            var enderecoAtualizado = _mapper.Map<UpdateEnderecoDto>(endereco);
+            patch.ApplyTo(enderecoAtualizado, ModelState);
+            if(!TryValidateModel(enderecoAtualizado))
+            {
+                return ValidationProblem(ModelState);
+            }else
+            {
+                _mapper.Map(enderecoAtualizado, endereco);
+                _context.SaveChanges();
+                return NoContent();
+            }
+
+        }
+    }
+  }
