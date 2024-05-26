@@ -21,7 +21,7 @@ public class EnderecoController : ControllerBase
     }
 
     [HttpPost]
-    public IActionResult AdicionaEndereco ([FromBody] CreateEnderecoDto enderecoDto)
+    public IActionResult AdicionaEndereco([FromBody] CreateEnderecoDto enderecoDto)
     {
 
         Endereco endereco = _mapper.Map<Endereco>(enderecoDto);
@@ -43,5 +43,15 @@ public class EnderecoController : ControllerBase
         if (endereco == null) return NotFound();
         return Ok(endereco);
 
+    }
+
+    [HttpPut("{id}")]
+    public IActionResult AtualizaEndereco(int id, [FromBody] UpdateEnderecoDto enderecoDto)
+    {
+        var endereco = _context.Enderecos.FirstOrDefault(endereco => endereco.Id == id);
+        if (endereco == null) return NotFound();
+        _mapper.Map(enderecoDto, endereco);
+        _context.SaveChanges();
+        return NoContent();
     }
 }
