@@ -6,8 +6,9 @@ var builder = WebApplication.CreateBuilder(args);
 var connectionString = builder.Configuration.GetConnectionString("EnderecoConnection");
 
 builder.Services.AddDbContext<EnderecoContext>(
-    opts => opts.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)
-    ));
+    opts => opts.UseMySql(connectionString, ServerVersion.AutoDetect(connectionString)));
+
+builder.Services.AddAutoMapper(AppDomain.CurrentDomain.GetAssemblies());
 
 // Add services to the container.
 

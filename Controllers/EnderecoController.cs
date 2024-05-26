@@ -1,4 +1,6 @@
-﻿using GerenciadorDeEnderecos.Data;
+﻿using AutoMapper;
+using GerenciadorDeEnderecos.Data;
+using GerenciadorDeEnderecos.Data.DTOs;
 using GerenciadorDeEnderecos.Models;
 using Microsoft.AspNetCore.Mvc;
 
@@ -10,15 +12,19 @@ public class EnderecoController : ControllerBase
 {
 
     private EnderecoContext _context;
+    private IMapper _mapper;
 
-    public EnderecoController(EnderecoContext context)
+    public EnderecoController(EnderecoContext context, IMapper mapper)
     {
         _context = context;
+        _mapper = mapper;
     }
 
     [HttpPost]
-    public IActionResult AdicionaEndereco ([FromBody] Endereco endereco)
+    public IActionResult AdicionaEndereco ([FromBody] CreateEnderecoDto enderecoDto)
     {
+
+        Endereco endereco = _mapper.Map<Endereco>(enderecoDto);
         _context.Enderecos.Add(endereco);
         _context.SaveChanges();
         return CreatedAtAction(nameof(ProcuraEnderecoPorId), new { id = endereco.Id }, endereco);
