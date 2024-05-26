@@ -30,3 +30,4 @@ C:\Users\Carlos\source\repos\GerenciadorDeEnderecos\GerenciadorDeEnderecos\obj\D
 C:\Users\Carlos\source\repos\GerenciadorDeEnderecos\GerenciadorDeEnderecos\obj\Debug\net8.0\GerenciadorDeEnderecos.pdb
 C:\Users\Carlos\source\repos\GerenciadorDeEnderecos\GerenciadorDeEnderecos\obj\Debug\net8.0\GerenciadorDeEnderecos.genruntimeconfig.cache
 C:\Users\Carlos\source\repos\GerenciadorDeEnderecos\GerenciadorDeEnderecos\obj\Debug\net8.0\ref\GerenciadorDeEnderecos.dll
+C:\Users\Carlos\source\repos\GerenciadorDeEnderecos\GerenciadorDeEnderecos\obj\Debug\net8.0\GerenciadorDeEnderecos.sourcelink.json

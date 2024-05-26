@@ -8,13 +8,26 @@ namespace GerenciadorDeEnderecos.Controllers;
 public class EnderecoController : ControllerBase
 {
     private static List<Endereco> enderecos = new List<Endereco>();
+    private static int id = 0;
 
     [HttpPost]
     public void AdicionaEndereco ([FromBody] Endereco endereco)
     {
-
-         enderecos.Add(endereco);
-         Console.WriteLine(endereco.Cep);
+        endereco.Id = id++;
+        enderecos.Add(endereco);
+        Console.WriteLine(endereco.Cep);
         
+    }
+
+    [HttpGet]
+    public IEnumerable<Endereco> LeEndereco()
+    {
+        return enderecos;
+    }
+
+    [HttpGet("{id}")]
+    public Endereco? ProcuraEnderecoPorId(int id)
+    {
+        return enderecos.FirstOrDefault(endereco => endereco.Id == id);
     }
 }

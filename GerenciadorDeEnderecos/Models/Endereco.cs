@@ -3,7 +3,9 @@
 namespace GerenciadorDeEnderecos.Models;
 
 public class Endereco
-{
+{   
+
+    public int Id { get; set; }
 
     [Required(ErrorMessage = "O campo cep não pode ficar em branco")]
     [MaxLength(8, ErrorMessage = "O Cep deve conter 8 caracteres")]
