@@ -20,9 +20,9 @@ public class EnderecoController : ControllerBase
     }
 
     [HttpGet]
-    public IEnumerable<Endereco> LeEndereco()
+    public IEnumerable<Endereco> LeEndereco([FromQuery] int skip = 0, [FromQuery] int take = 10)
     {
-        return enderecos;
+        return enderecos.Skip(skip).Take(take);
     }
 
     [HttpGet("{id}")]

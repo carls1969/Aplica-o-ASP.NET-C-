@@ -14,7 +14,7 @@ using System.Reflection;
 [assembly: System.Reflection.AssemblyCompanyAttribute("GerenciadorDeEnderecos")]
 [assembly: System.Reflection.AssemblyConfigurationAttribute("Debug")]
 [assembly: System.Reflection.AssemblyFileVersionAttribute("1.0.0.0")]
-[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+09deb17098bb31e34f75c76be93ef65d41f81e0c")]
+[assembly: System.Reflection.AssemblyInformationalVersionAttribute("1.0.0+5a7788e7e6555e9cbb5a3635e42c01eebfd7fb55")]
 [assembly: System.Reflection.AssemblyProductAttribute("GerenciadorDeEnderecos")]
 [assembly: System.Reflection.AssemblyTitleAttribute("GerenciadorDeEnderecos")]
 [assembly: System.Reflection.AssemblyVersionAttribute("1.0.0.0")]
